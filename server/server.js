@@ -1,17 +1,29 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
-const db = require('./config/db');
-const app = express();
+const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const port = 3000;
+const app = express();
+
+const db = require('./app/models');
+db.sequelize.sync();
+
+const corsOptions = {
+    origin: 'http://localhost:8080'
+};
+
+app.use(cors(corsOptions))
+
 app.use(express.json());
-app.use(cors())
-MongoClient.connect(db.url, (err, client) => {
-    const db = client.db('myFirstDatabase');
-    if (err) return console.log(err)
-    require('./app/routes')(app, db);
-    app.listen(port, () => {
-        console.log('We are live on ' + port);
-    });
+
+app.use(express.urlencoded({extended: true}));
+
+app.get("/", (req, res) => {
+    res.json({message: "Hello pidor"});
+}) ;
+
+require("./app/routes/users.routes")(app);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`)
 })
