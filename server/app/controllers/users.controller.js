@@ -1,22 +1,25 @@
 const db = require("../models");
 const Users = db.users;
-const Op = db.Sequelize.Op;
 
+//Создание нового пользователя
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.title) {
+    // Проверка запроса на наличие данных
+    if (!req.body) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Нельзя добавить пустые поля"
         });
         return;
     }
 
-    // Create a Tutorial
     const users = {
         first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        gender: req.body.gender,
+        ip_address: req.body.ip_address,
     };
 
-    // Save Tutorial in the database
+    // Добавление пользователя в базу данных
     Users.create(users)
         .then(data => {
             res.send(data);
@@ -24,11 +27,12 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Tutorial."
+                    "При добавлении пользователя произошла ошибка"
             });
         });
 };
 
+//Получение всех пользователей
 exports.findAll = (req, res) => {
     Users.findAll()
         .then(data => {
@@ -37,23 +41,57 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    "При получении списка пользователей произошла ошибка"
             });
         });
 };
 
-exports.findOne = (req, res) => {
-
-};
-
+//Обновление данных пользователей
 exports.update = (req, res) => {
+    const id = req.params.id;
 
+    Users.update(req.body, {
+        where: {id: id}
+    })
+        .then(isFound => {
+            if (isFound) {
+                res.send({
+                    message: `Пользователь с id = ${id} успешно обнавлён`
+                });
+            } else {
+                res.send({
+                    message: `Пользователь с id = ${id} не найден`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Не удалось обновить пользователя с id = ${id}`
+            });
+        });
 };
 
+//Удаление пользователя
 exports.delete = (req, res) => {
+    const id = req.params.id;
 
-};
-
-exports.deleteAll = (req, res) => {
-
+    Users.destroy({
+        where: {id: id}
+    })
+        .then(isFound => {
+            if (isFound) {
+                res.send({
+                    message: `Пользователь с id = ${id} успешно удалён`
+                });
+            } else {
+                res.send({
+                    message: `Пользователь с id = ${id} не найден`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Не удалось удалить пользователя с id = ${id}`
+            });
+        });
 };

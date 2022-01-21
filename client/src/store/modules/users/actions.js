@@ -1,13 +1,13 @@
 const actions = {
     async getUsers(context) {
         const res = await fetch(
-            'http://localhost:3000/users');
+            'http://localhost:3000/api/users');
         const users = await res.json();
         context.commit('getUsers', users)
     },
 
     async addUser(context, userInfo) {
-        const res = await fetch('http://localhost:3000/users/',
+        const res = await fetch('http://localhost:3000/api/users/',
             {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
@@ -18,7 +18,7 @@ const actions = {
     },
 
     async editUser(context, userInfo) {
-        const url = 'http://localhost:3000/users/' + userInfo._id
+        const url = 'http://localhost:3000/api/users/' + userInfo.id
         await fetch(url, {
             method: 'put',
             headers: {
@@ -30,7 +30,7 @@ const actions = {
     },
 
     async deleteUser(context, userInfo) {
-        const url = 'http://localhost:3000/users/' + userInfo._id
+        const url = 'http://localhost:3000/api/users/' + userInfo.id
         await fetch(url, {
             method: 'delete'
         })

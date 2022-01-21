@@ -23,7 +23,7 @@
 import AddUser from "./UserForm";
 
 export default {
-  props: ['userData', 'user'],
+  props: ['user'],
   name: 'modal',
   components: {
     AddUser,

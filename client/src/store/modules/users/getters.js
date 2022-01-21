@@ -1,5 +1,5 @@
 const getters = {
-    USERS(state) {
+    allUsers(state) {
         return state.users
     }
 }

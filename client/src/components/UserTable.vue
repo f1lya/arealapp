@@ -19,15 +19,13 @@
           <button
               type="button"
               class="btn update"
-              @click="showModal(user)"
-          />
+              @click="showModal(user)"/>
         </th>
         <th>
           <button
               type="button"
               class="btn delete"
-              @click="deleteUsr(user)"
-          />
+              @click="deleteUsr(user)"/>
         </th>
       </tr>
     </table>
@@ -61,10 +59,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['USERS']),
+    ...mapGetters(['allUsers', 'isModalVisibleUpdate']),
+
   },
   methods: {
-    ...mapActions(['getUsers', 'editUser', 'deleteUser']),
+    ...mapActions(['getUsers', 'editUser', 'deleteUser', 'showModalUpdate', 'closeModalUpdate']),
     showModal(user) {
       this.isModalVisible = true;
       this.user = user;

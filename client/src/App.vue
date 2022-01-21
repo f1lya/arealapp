@@ -2,14 +2,14 @@
   <div id="app">
     <div class="header">
       <p>Список пользователей</p>
-      <button type="button" class="btn" @click="showModal"/>
+      <button type="button" class="btn" @click="showModalAdd"/>
     </div>
-    <ModalWindow v-show="isModalVisible" @close="closeModal" @postUser="postUser">
+    <ModalWindow v-show="isModalVisibleAdd" @close="closeModalAdd" @postUser="postUser">
       <template v-slot:header>
         Добавить нового пользователя
       </template>
     </ModalWindow>
-    <UserTable :users="USERS"
+    <UserTable :users="allUsers"
     />
   </div>
 </template>
@@ -28,26 +28,17 @@ export default {
   },
   data() {
     return {
-      isDesc: false,
-      isModalVisible: false,
     }
   },
-  //Получение доступа к списку пользователей внутри компонента
   computed: {
-    ...mapGetters(['USERS']),
+    ...mapGetters(['allUsers', 'isModalVisibleAdd']),
   },
   methods: {
-    ...mapActions(['getUsers', 'addUser']),
-    //Методы открытия и закрытия модального окна
-    showModal() {
-      this.isModalVisible = true;
-    },
-    closeModal() {
-      this.isModalVisible = false;
-    },
+    ...mapActions(['getUsers', 'addUser', 'showModalAdd', 'closeModalAdd']),
+
     postUser(userInfo) {
       this.addUser(userInfo)
-      this.closeModal()
+      this.closeModalAdd()
     }
   },
 
