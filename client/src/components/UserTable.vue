@@ -25,13 +25,13 @@
           <button
               type="button"
               class="btn delete"
-              @click="deleteUsr(user)"/>
+              @click="deleteUser(user)"/>
         </th>
       </tr>
     </table>
     <ModalWindow
-        v-show="isModalVisible"
-        @close="closeModal"
+        v-show="isModalVisibleUpdate"
+        @close="closeModalUpdate"
         @postUser="postUser"
         :user="user"
     >
@@ -53,8 +53,6 @@ export default {
   components: {ModalWindow},
   data() {
     return {
-      isDesc: false,
-      isModalVisible: false,
       user: null,
     }
   },
@@ -65,19 +63,13 @@ export default {
   methods: {
     ...mapActions(['getUsers', 'editUser', 'deleteUser', 'showModalUpdate', 'closeModalUpdate']),
     showModal(user) {
-      this.isModalVisible = true;
+      this.showModalUpdate()
       this.user = user;
-    },
-    closeModal() {
-      this.isModalVisible = false;
     },
     postUser(userInfo) {
       this.editUser(userInfo)
-      this.closeModal()
+      this.closeModalUpdate()
     },
-    deleteUsr(userInfo) {
-      this.deleteUser(userInfo)
-    }
   },
   async mounted() {
     await this.getUsers()
