@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import AddUser from "./UserForm";
+import AddUser from "@/components/users/UserForm";
 
 export default {
   props: ['user'],
