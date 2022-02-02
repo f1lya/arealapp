@@ -1,21 +1,21 @@
 #Makefile
-start:
+start dev:
+	npm run serve
+
+start build:
 	docker-compose up --build -d
 
-stop:
+stop build:
 	docker-compose stop
 
-restart:
+restart build:
 	docker-compose restart
 
 migrate:
-	cd database; \
-	sequelize-cli db:migrate
+	docker-compose exec "server" sh -c "cd database && npx sequelize-cli db:migrate"
 
 undo:
-	cd database; \
-	sequelize-cli db:migrate:undo:all
+	docker-compose exec "server" sh -c "cd database && npx sequelize-cli db:migrate:undo:all"
 
 seed:
-	cd database; \
-	sequelize-cli db:seed:all
+	docker-compose exec "server" sh -c "cd database && npx sequelize-cli db:seed:all"

@@ -2,7 +2,6 @@
   <div id="header">
     <div id="nav">
       <router-link class="link" to="/">Home</router-link>
-      <router-link class="link" to="/about">About</router-link>
     </div>
   </div>
 </template>
@@ -12,14 +11,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: cornflowerblue;
+  background-color: #43a047;
+  box-shadow: 0 4px 8px 0 rgba(12, 43, 4, 0.4);
 }
 
 .link {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  color: #111;
+  color: #fff;
   padding: 0 5px;
 }
 

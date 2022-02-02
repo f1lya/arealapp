@@ -1,8 +1,7 @@
 <template>
-<div class="wrapper">
   <form @submit.prevent="postUser">
     <p>
-      <label for="first_name">Имя: </label>
+      <label for="first_name">Имя:</label>
       <input v-model="userInfo.first_name" id="first_name" type="text" placeholder="Vadim">
     </p>
     <p>
@@ -23,7 +22,6 @@
     </p>
     <input type="submit" id="btn_submit" value="Сохранить">
   </form>
-</div>
 </template>
 
 <script>
@@ -62,14 +60,42 @@ export default {
   font-size: 16px;
 }
 
-.wrapper {
-  text-align: center;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px 0;
+  width: 100%;
+}
+
+input {
+  height: 22px;
+  width: 96%;
+  margin: 0 1%;
+  padding: 1%;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+label {
+  margin: 1%;
 }
 
 #btn_submit {
+  margin-top: 15px;
   height: 30px;
-  background-color: cornflowerblue;
-  border: 2px solid black;
+  width: 120px;
+  background-color: #43a047;
+  border: none;
+  color: #fff;
+  font-weight: 600;
   border-radius: 10px;
 }
 </style>

@@ -5,9 +5,7 @@
         <slot name="header">
           Header
         </slot>
-        <button type="button" class="btn-close" @click="close">
-          x
-        </button>
+        <button type="button" class="btn-close" @click="close"/>
       </header>
       <section class="modal-body">
         <AddUser
@@ -63,6 +61,7 @@ export default {
 .modal {
   background: #FFFFFF;
   overflow-x: auto;
+  width: 320px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -73,20 +72,22 @@ export default {
   border-bottom: 1px solid #eeeeee;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px;
+  padding: 20px;
+  font-weight: 600;
 }
 
 .modal-body {
   position: relative;
-  padding: 20px 10px;
+  padding: 10px 20px 20px 20px;
 }
 
 .btn-close {
-  border: none;
-  font-size: 20px;
   cursor: pointer;
-  font-weight: bold;
-  background: transparent;
+  border: none;
+  background: #fff url("../assets/close.png");
+  background-size: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 </style>

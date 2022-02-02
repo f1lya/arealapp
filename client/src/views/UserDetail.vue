@@ -1,9 +1,12 @@
 <template>
   <div class="wrapper">
+    <p class="header">
+      Подробная информация
+    </p>
   <div class="card">
-      <div v-for="(field, key) in user" :key="field">
+      <p v-for="(field, key) in user" :key="field">
         <span class="key">{{key}}:</span> {{field}}
-      </div>
+      </p>
   </div>
   </div>
 </template>
@@ -23,13 +26,19 @@ export default {
 <style>
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.header {
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+}
+
 .card {
-  margin-top: 40px;
-  padding: 20px;
+  padding: 0 20px;
   border: 1px solid lightslategray;
   border-radius: 10px;
   font-size: 26px;
