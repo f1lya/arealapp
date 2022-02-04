@@ -2,13 +2,13 @@
 start dev:
 	npm run serve
 
-start build:
+start:
 	docker-compose up --build -d
 
-stop build:
+stop:
 	docker-compose stop
 
-restart build:
+restart:
 	docker-compose restart
 
 migrate:
